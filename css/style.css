@@ -1,17 +1,16 @@
-/* Oculta elementos marcados com a classe hidden, como a janela de créditos fechada. */
+/* Oculta elementos com a classe hidden */
 .hidden {
     display: none !important;
 }
 
-/* Define o fundo, a cor do texto e a fonte padrão da página. */
 body {
     margin: 0;
     background-color: #1a1a24;
     color: #ffffff;
     font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
 }
 
-/* Organiza e centraliza os elementos de cada tela na página. */
 .tela {
     display: flex;
     flex-direction: column;
@@ -21,17 +20,15 @@ body {
     gap: 16px;
 }
 
-/* Exibe a imagem como fundo do menu e escurece-a levemente para destacar o conteúdo. */
 #menu-inicial {
     background-image:
-        linear-gradient(rgb(26 26 36 / 65%), rgb(26 26 36 /65%)),
+        linear-gradient(rgb(26 26 36 / 65%), rgb(26 26 36 / 65%)),
         url("../img/fundo.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-/* Posiciona o título do jogo perto do topo sem deslocar o salão do centro. */
 #tela-jogo {
     position: relative;
 }
@@ -40,8 +37,21 @@ body {
     position: absolute;
     top: 24px;
     margin: 0;
+    font-weight: bold;
+    text-shadow: 4px 4px 0px #000;
 }
-/* Reserva e centraliza a área que reúne o título e a imagem de fundo. */
+
+/* Posição absoluta evita o pulo da tela quando desvanece */
+#mensagem-inicio-jogo {
+    position: absolute;
+    top: 70px;
+    margin: 0;
+    z-index: 5;
+    font-size: 20px;
+    color: #f1c40f;
+    text-shadow: 2px 2px 0px #000;
+}
+
 .titulo-com-imagem {
     position: relative;
     display: flex;
@@ -51,18 +61,20 @@ body {
     min-height: 192px;
 }
 
-/* Mantém o título à frente da imagem e centraliza seu texto. */
 .titulo-jogo {
     position: relative;
     z-index: 1;
     margin: 0;
     text-align: center;
     transform: translateY(-100px);
-    font-family: Brush Script MT, Brush Script Std, cursive;
-    font-size: 70px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 50px;
+    text-shadow: 6px 6px 0px #000;
+    color: #f1c40f;
 }
 
-/* Escurece o fundo e centraliza a janela de créditos sobre a página. */
+/* Modal e Janelas */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -74,37 +86,47 @@ body {
     background-color: rgb(0 0 0 / 70%);
 }
 
-/* Define o visual da caixa de créditos, com borda e sombra em estilo retrô. */
 .janela-creditos {
     width: min(100%, 420px);
     padding: 24px;
     border: 4px solid #ffffff;
     background-color: #2c3e50;
     text-align: center;
-    box-shadow: 8px 8px 0 #000000;
+    box-shadow: 10px 10px 0 #000000;
 }
 
-/* Define o tamanho, as cores e o estilo padrão dos botões. */
+/* Botões em Estilo Pixel Art */
 button {
-    padding: 20px 28px;
+    padding: 15px 25px;
     font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     color: #ffffff;
     background-color: #e74c3c;
-    border: 4px solid #c0392b;
-    border-radius: 15px;
+    border: 4px solid #ffffff;
+    border-radius: 0;
     cursor: pointer;
-    transition: transform 0.1s;
-    border-radius: 15px;
+    box-shadow: 6px 6px 0 #000000;
+    transition: all 0.1s;
 }
 
-/* Clareia e amplia levemente o botão quando o cursor passa sobre ele. */
 button:hover {
     background-color: #ff5252;
-    transform: scale(1.05);
 }
 
-/* Organiza o rótulo, o campo de texto e a mensagem de erro em coluna. */
+button:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0px 0px 0 #000000;
+}
+
+button:disabled {
+    background-color: #7f8c8d;
+    cursor: not-allowed;
+    color: #bdc3c7;
+    box-shadow: 3px 3px 0 #000;
+}
+
+/* Campos de Formulário */
 .campo-input {
     display: flex;
     flex-direction: column;
@@ -112,45 +134,208 @@ button:hover {
     gap: 8px;
 }
 
-/* Estiliza o campo de texto usado para informar o nome da lanchonete. */
 input {
-    padding: 10px;
+    padding: 15px;
     font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
     text-align: center;
-    border: 2px solid #ffffff;
-    border-radius: 4px;
+    border: 4px solid #ffffff;
+    border-radius: 0;
     background-color: #2c3e50;
     color: #ffffff;
+    box-shadow: 6px 6px 0 #000;
 }
 
-/* Destaca mensagens de erro em vermelho e reserva espaço para elas. */
+input:focus {
+    outline: none;
+    background-color: #34495e;
+}
+
 .texto-erro {
     color: #ff5252;
     font-size: 14px;
+    font-weight: bold;
     height: 18px;
+    text-shadow: 2px 2px 0 #000;
 }
 
-/* Faz a mensagem de início encolher rapidamente e desaparecer. */
+/* Animações */
 .mensagem-inicio-animando {
     animation: encolher-mensagem 900ms ease-in forwards;
 }
 
 @keyframes encolher-mensagem {
-    from {
-        opacity: 1;
-        transform: scale(2.5);
-    }
-
-    to {
-        opacity: 0;
-        transform: scale(0.2);
-    }
+    from { opacity: 1; transform: scale(2.5); }
+    to { opacity: 0; transform: scale(0.2); }
 }
 
-/* Define o tamanho e a cor do retângulo, centralizado pela tela do jogo. */
+/* Estrutura Pixel Art da Lanchonete */
 .salao {
-    width: 800px;
-    height: 450px;
-    flex: 0 0 auto;
-    background-color: #858585;
+    width: 900px;
+    height: 500px;
+    background-color: #2c3e50;
+    border: 6px solid #ffffff;
+    box-shadow: 12px 12px 0 #000000;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+    gap: 15px;
+}
+
+.painel-status, .area-balcao, .area-loja {
+    background-color: #34495e;
+    border: 4px solid #ffffff;
+    box-shadow: 6px 6px 0 #000;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.painel-status { flex: 1; align-items: center; }
+
+.area-balcao { 
+    flex: 2; 
+    align-items: center; 
+    justify-content: center; 
+    position: relative;
+    background-color: #7f8c8d;
+}
+
+.area-loja { flex: 1.8; }
+
+/* Indicadores de Status */
+.caixa-pontos {
+    background: #2ecc71;
+    color: #000;
+    border: 4px solid #fff;
+    width: 100%;
+    text-align: center;
+    padding: 15px 10px;
+    margin-bottom: 20px;
+    box-shadow: 4px 4px 0 #000;
+}
+
+.caixa-pontos h3 { margin: 0; font-size: 32px; }
+.caixa-pontos p { margin: 5px 0 0; font-weight: bold; }
+
+.caixa-info {
+    background: #1a1a24;
+    border: 4px solid #fff;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 4px 4px 0 #000;
+    box-sizing: border-box;
+}
+
+.caixa-info p { margin: 10px 0; }
+
+/* HotDog Gigante */
+.hotdog-gigante {
+    background: none;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    z-index: 2;
+    padding: 0;
+}
+
+.hotdog-gigante:hover { background: none; }
+.hotdog-gigante:active {
+    transform: scale(0.9);
+    box-shadow: none;
+}
+
+.hotdog-gigante img {
+    max-width: 200px;
+    image-rendering: pixelated;
+    filter: drop-shadow(8px 8px 0 rgba(0,0,0,0.8));
+}
+
+/* Sistema de Combo */
+#indicador-combo {
+    position: absolute;
+    bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #f39c12;
+    text-shadow: 3px 3px 0 #000;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.combo-oculto {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.combo-ativo {
+    opacity: 1;
+    transform: translateY(0);
+    animation: pulsar-combo 0.4s infinite alternate;
+}
+
+@keyframes pulsar-combo {
+    from { transform: scale(1); color: #f39c12; }
+    to { transform: scale(1.15); color: #e74c3c; }
+}
+
+/* Loja e Categorias */
+.titulo-loja {
+    margin: 0 0 10px 0;
+    text-align: center;
+    border-bottom: 4px solid #fff;
+    padding-bottom: 10px;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.loja-categorias {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.categoria-loja h4 {
+    margin: 0 0 10px 0;
+    font-size: 13px;
+    color: #f1c40f;
+    text-shadow: 2px 2px 0 #000;
+    border-bottom: 2px dashed #7f8c8d;
+    padding-bottom: 5px;
+}
+
+.lista-upgrades {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.item-loja {
+    background: #2c3e50;
+    border: 2px solid #fff;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-item h4 { margin: 0; font-size: 11px; font-weight: bold; }
+.info-item p { margin: 4px 0 0; font-size: 10px; color: #2ecc71; font-weight: bold; }
+
+.btn-comprar {
+    padding: 6px 10px;
+    font-size: 11px;
+    border-width: 2px;
+    box-shadow: 3px 3px 0 #000;
+}
+
+.btn-comprar:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px 0 #000;
 }

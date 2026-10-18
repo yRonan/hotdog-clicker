@@ -8,13 +8,14 @@
 </head>
 <body>
 
+    <!-- Menu Inicial -->
     <div id="menu-inicial" class="tela">
         <div class="titulo-com-imagem">
             <h1 class="titulo-jogo">PIXEL DOG CLICKER</h1>
         </div>
 
         <div class="campo-input">
-            <label for="nome-lanchonete">Nome da sua Lanchonete:</label>
+            <label for="nome-lanchonete">NOME DA LANCHONETE:</label>
             <input type="text" id="nome-lanchonete" placeholder="Ex: Hotdog do Carlão" maxlength="20">
             <span id="erro-nome" class="texto-erro"></span>
         </div>
@@ -25,6 +26,7 @@
         </div>
     </div>
 
+    <!-- Modal de Créditos -->
     <div id="tela-creditos" class="modal-overlay hidden" aria-hidden="true">
         <section class="janela-creditos" role="dialog" aria-modal="true" aria-labelledby="titulo-creditos">
             <h2 id="titulo-creditos">CRÉDITOS</h2>
@@ -34,11 +36,51 @@
         </section>
     </div>
 
+    <!-- Tela do Jogo -->
     <div id="tela-jogo" class="tela hidden">
         <h2 id="titulo-lanchonete">Sua Lanchonete</h2>
         <p id="mensagem-inicio-jogo">O jogo começa aqui</p>
+        
         <main class="salao">
+            <!-- 1. Painel de Status (Esquerda) -->
+            <section class="painel-status">
+                <div class="caixa-pontos">
+                    <h3><span id="contador-hotdog">0</span></h3>
+                    <p>HOT DOGS 🌭</p>
+                </div>
+                <div class="caixa-info">
+                    <p>AUTO: <span id="sps-hotdog">0</span> / SEG</p>
+                    <p>CLIQUE: <span id="valor-clique">1</span></p>
+                </div>
+            </section>
 
+            <!-- 2. Área do Clicker e Combo (Centro) -->
+            <section class="area-balcao">
+                <button id="btn-hotdog" class="hotdog-gigante" aria-label="Fazer HotDog">
+                    <img src="img/hotdog.png" alt="Hot Dog" id="img-hotdog" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span style="display:none; font-size: 100px;">🌭</span>
+                </button>
+                
+                <!-- Indicador de Combo (substitui a antiga mesa) -->
+                <div id="indicador-combo" class="combo-oculto">🔥 COMBO 1.2X 🔥</div>
+            </section>
+
+            <!-- 3. Área de Upgrades / Loja em Categorias (Direita) -->
+            <section class="area-loja">
+                <h3 class="titulo-loja">MELHORIAS</h3>
+                
+                <div class="loja-categorias">
+                    <div class="categoria-loja">
+                        <h4>👨‍🍳 CHEFE (+ CLIQUE)</h4>
+                        <div id="lista-chefe" class="lista-upgrades"></div>
+                    </div>
+
+                    <div class="categoria-loja">
+                        <h4>👥 FUNCIONÁRIOS (+ AUTO)</h4>
+                        <div id="lista-funcionarios" class="lista-upgrades"></div>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
