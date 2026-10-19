@@ -41,7 +41,6 @@ body {
     text-shadow: 4px 4px 0px #000;
 }
 
-/* Posição absoluta evita o pulo da tela quando desvanece */
 #mensagem-inicio-jogo {
     position: absolute;
     top: 70px;
